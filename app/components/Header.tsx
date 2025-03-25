@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: s(16),
-    fontWeight: "bold",
     textAlign: "left",
   },
   rightComponentContainer: {

@@ -8,7 +8,7 @@ const HomeScreen = () => {
       <Text
         style={{ fontSize: 20, textAlign: "center", color: colors.textPrimary }}
       >
-        Home Screen
+        Welcome to Dashboard.
       </Text>
     </View>
   );
