@@ -1,8 +1,17 @@
-// import React from "react";
-import { View, Text, ScrollView, TextInput, Image, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import ProductListScreen from "../components/productlist"; // Import Product List Component
-import specialOffer from "../../assets/images/specialoffer.png";
+import ProductListScreen from "../components/productlist";
+import Banner from "../components/banner";
+import Producthome from "../components/product_home";
 
 // Import images
 import beauty from "../../assets/images/beauty.png";
@@ -22,88 +31,109 @@ const categoryImages = {
 
 const HomeScreen: React.FC = () => {
   return (
-    <ScrollView style={styles.container}>
-      
-      {/* Header */}
+    <View style={styles.container}>
+      {/* Fixed Header */}
       <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="menu" size={26} color="black" />
-        </TouchableOpacity>
-
-        <Image source={stylishlogo} style={styles.logo} />
-
-        <TouchableOpacity>
-          <Image source={require("../../assets/images/logo.png")} style={styles.profileIcon} />
-        </TouchableOpacity>
-      </View>
-
-      {/* Search Bar */}
-      <View style={styles.searchBar}>
-        <Ionicons name="search" size={20} color="gray" />
-        <TextInput placeholder="Search any Product..." style={styles.searchInput} />
-      </View>
-
-      {/* Featured Section */}
-      <View style={styles.featuredContainer}>
-        <Text style={styles.sectionTitle}>All Featured</Text>
-
-        <View style={styles.sortFilterContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Sort</Text>
-            <FontAwesome name="sort" size={14} color="black" />
+        <View style={styles.headerTopRow}>
+          <TouchableOpacity>
+            <Ionicons name="menu" size={26} color="black" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Filter</Text>
-            <MaterialIcons name="filter-list" size={16} color="black" />
+          <Image source={stylishlogo} style={styles.logo} />
+
+          <TouchableOpacity>
+            <Image source={require("../../assets/images/logo.png")} style={styles.profileIcon} />
           </TouchableOpacity>
         </View>
+
+        <View style={styles.searchContainer}>
+      {/* Search Icon */}
+      <Ionicons name="search" size={20} color="gray" style={styles.iconLeft} />
+
+      {/* Search Input */}
+      <TextInput
+        placeholder="Search any Product..."
+        placeholderTextColor="gray"
+        style={styles.searchInput}
+      />
+
+      {/* Microphone Icon */}
+      <Ionicons name="mic-outline" size={22} color="gray" style={styles.iconRight} />
+    </View>
       </View>
 
-      {/* Categories */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoryContainer}>
-        {Object.keys(categoryImages).map((category, index) => (
-          <TouchableOpacity key={index} style={styles.categoryItem}>
-            <Image source={categoryImages[category]} style={styles.categoryImage} />
-            <Text style={styles.categoryText}>{category}</Text>
+
+      {/* Scrollable Content */}
+      <ScrollView contentContainerStyle={{ paddingTop: 110 }}>
+        {/* Search Bar */}
+        
+
+        {/* Featured Section */}
+        <View style={styles.featuredContainer}>
+          <Text style={styles.sectionTitle}>All Featured</Text>
+
+          <View style={styles.sortFilterContainer}>
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Sort</Text>
+              <FontAwesome name="sort" size={14} color="black" />
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Filter</Text>
+              <MaterialIcons name="filter-list" size={16} color="black" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Categories */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.categoryContainer}
+        >
+          {Object.keys(categoryImages).map((category, index) => (
+            <TouchableOpacity key={index} style={styles.categoryItem}>
+              <Image
+                source={categoryImages[category]}
+                style={styles.categoryImage}
+              />
+              <Text style={styles.categoryText}>{category}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        <Banner /> {/* Top Banner */}
+        <Producthome /> {/* Product Dashboard */}
+
+        {/* Deal of the Day */}
+        <View style={styles.dealContainer}>
+          <Text style={styles.dealTitle}>Deal of the Day</Text>
+          <View style={styles.timerRow}>
+            <FontAwesome name="clock-o" size={14} color="white" />
+            <Text style={styles.dealTimer}> 22h 55m 20s remaining</Text>
+          </View>
+          <TouchableOpacity style={styles.dealButton}>
+            <Text style={styles.dealButtonText}>View all →</Text>
           </TouchableOpacity>
-        ))}
+        </View>
+
+        <ProductListScreen />
+
+        {/* Special Offers */}
+        <View style={styles.specialOfferContainer}>
+          <Image
+            source={require("../../assets/images/offers.png")}
+            style={styles.specialOfferImage}
+          />
+          <View>
+            <Text style={styles.specialOfferTitle}>Special Offers 🎉</Text>
+            <Text style={styles.specialOfferText}>
+              We make sure you get the offer you need at best prices
+            </Text>
+          </View>
+        </View>
       </ScrollView>
-
-      {/* Featured Banner */}
-      <View style={styles.banner}>
-        <Text style={styles.bannerTitle}>50-40% OFF</Text>
-        <Text style={styles.bannerSubtitle}>Now in (product)</Text>
-        <TouchableOpacity style={styles.bannerButton}>
-          <Text style={styles.bannerButtonText}>Shop Now →</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Deal of the Day */}
-      <View style={styles.dealContainer}>
-        <Text style={styles.dealTitle}>Deal of the Day</Text>
-        <View style={styles.timerRow}>
-          <FontAwesome name="clock-o" size={14} color="white" />
-          <Text style={styles.dealTimer}> 22h 55m 20s remaining</Text>
-        </View>
-        <TouchableOpacity style={styles.dealButton}>
-          <Text style={styles.dealButtonText}>View all →</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* 🔥 Featured Products List */}
-      <Text style={styles.sectionTitle}>Featured Products</Text>
-      <ProductListScreen /> {/* 🛒 Product List Component Added Here */}
-      {/* 🔥 Special Offers Banner */}
-      <View style={styles.specialOfferContainer}>
-        <Image source={require("../../assets/images/offers.png")} style={styles.specialOfferImage} />
-        <View>
-          <Text style={styles.specialOfferTitle}>Special Offers 🎉</Text>
-          <Text style={styles.specialOfferText}>We make sure you get the offer you need at best prices</Text>
-        </View>
-      </View>
-   
-    </ScrollView>
+    </View>
   );
 };
 
@@ -111,13 +141,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F5F5F5",
-    paddingHorizontal: 10,
   },
   header: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: "#F5F5F5",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
+    elevation: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  headerTopRow: {
     flexDirection: "row",
+    width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
-    marginVertical: 10,
+    marginBottom: 10,
   },
   logo: {
     width: 120,
@@ -129,14 +177,29 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 17.5,
   },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    height: 50,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+    width: "95%", // Adjust width as needed
+    alignSelf: "center", // Center in the parent
+  },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#EAEAEA",
     borderRadius: 25,
     paddingHorizontal: 15,
-    height: 50,
-    marginVertical: 10,
+    height: 45,
+    width: "90%",
   },
   searchInput: {
     flex: 1,
@@ -147,9 +210,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginVertical: 15,
+    paddingHorizontal: 10,
   },
   sectionTitle: {
-    marginTop:5,
     fontSize: 18,
     fontWeight: "bold",
   },
@@ -178,6 +241,7 @@ const styles = StyleSheet.create({
   categoryContainer: {
     flexDirection: "row",
     marginBottom: 10,
+    paddingHorizontal: 10,
   },
   categoryItem: {
     alignItems: "center",
@@ -192,36 +256,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 12,
   },
-  banner: {
-    backgroundColor: "#FF7A90",
-    borderRadius: 12,
-    padding: 15,
-    alignItems: "center",
-    marginBottom: 15,
-  },
-  bannerTitle: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  bannerSubtitle: {
-    color: "white",
-  },
-  bannerButton: {
-    backgroundColor: "white",
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 10,
-  },
-  bannerButtonText: {
-    color: "#FF7A90",
-    fontWeight: "bold",
-  },
   dealContainer: {
     backgroundColor: "#2196F3",
     borderRadius: 12,
     padding: 12,
+    marginHorizontal: 10,
     marginTop: 12,
   },
   dealTitle: {
@@ -245,7 +284,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 5,
     alignSelf: "flex-end",
-    marginTop: 0,
   },
   dealButtonText: {
     color: "#2196F3",
@@ -278,7 +316,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     maxWidth: "95%", 
   },
-  
 });
 
 export default HomeScreen;
+
+
+

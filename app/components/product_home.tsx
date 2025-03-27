@@ -19,7 +19,7 @@ const products: Product[] = [
     discount: "40% off",
     rating: 4.5,
     reviews: "56,890",
-    image: require("../../assets/images/watch.png"), 
+    image: require("../../assets/images/kurta.png"),
   },
   {
     id: "2",
@@ -28,7 +28,7 @@ const products: Product[] = [
     discount: "50% off",
     rating: 4.3,
     reviews: "34,467",
-    image: require("../../assets/images/shoes1.png"),
+    image: require("../../assets/images/shoes.png"),
   },
   {
     id: "3",
@@ -38,9 +38,8 @@ const products: Product[] = [
     rating: 4.6,
     reviews: "45,789",
     image: require("../../assets/images/kurta.png"),
-},
-
-{
+  },
+  {
     id: "4",
     name: "Adidas Ultraboost",
     price: "₹5599",
@@ -48,22 +47,23 @@ const products: Product[] = [
     rating: 4.7,
     reviews: "28,634",
     image: require("../../assets/images/shoes.png"),
-},
-
+  },
 ];
 
-const ProductListScreen: React.FC = () => {
+const Producthome: React.FC = () => {
   return (
     <FlatList
       data={products}
-      horizontal
-      showsHorizontalScrollIndicator={false}
       keyExtractor={(item) => item.id}
+      numColumns={2} 
+      columnWrapperStyle={styles.row}
       renderItem={({ item }) => (
         <TouchableOpacity style={styles.card}>
           <Image source={item.image} style={styles.image} />
           <Text style={styles.title}>{item.name}</Text>
-          <Text style={styles.price}>{item.price} <Text style={styles.discount}>{item.discount}</Text></Text>
+          <Text style={styles.price}>
+            {item.price} <Text style={styles.discount}>{item.discount}</Text>
+          </Text>
           <Text style={styles.rating}>⭐ {item.rating} ({item.reviews})</Text>
         </TouchableOpacity>
       )}
@@ -71,15 +71,17 @@ const ProductListScreen: React.FC = () => {
   );
 };
 
-
-
 const styles = StyleSheet.create({
+  row: {
+    justifyContent: "space-between",
+    paddingHorizontal: 8,
+  },
   card: {
     backgroundColor: "#fff",
     borderRadius: 8,
-    padding: 10,
-    margin: 8,
-    width: 180,
+    padding: 8,
+    margin: 3,
+    width: "49%", // ✅ Makes sure 2 products fit per row
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
@@ -96,21 +98,23 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     marginVertical: 4,
+    textAlign: "center",
   },
   price: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#000",
+    textAlign: "center",
   },
   discount: {
     fontSize: 12,
     color: "red",
-    marginLeft: 5,
   },
   rating: {
     fontSize: 12,
     color: "gray",
+    textAlign: "center",
   },
 });
 
-export default ProductListScreen;
+export default Producthome;
