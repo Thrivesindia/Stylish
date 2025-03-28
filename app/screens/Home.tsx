@@ -133,6 +133,7 @@ const HomeScreen: React.FC = () => {
           </View>
         </View>
       </ScrollView>
+      
     </View>
   );
 };
