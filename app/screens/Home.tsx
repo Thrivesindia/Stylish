@@ -32,7 +32,7 @@ const categoryImages = {
 const HomeScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      {/* Fixed Header */}
+  
       <View style={styles.header}>
         <View style={styles.headerTopRow}>
           <TouchableOpacity>
@@ -47,28 +47,25 @@ const HomeScreen: React.FC = () => {
         </View>
 
         <View style={styles.searchContainer}>
-      {/* Search Icon */}
+      
       <Ionicons name="search" size={20} color="gray" style={styles.iconLeft} />
 
-      {/* Search Input */}
+  
       <TextInput
         placeholder="Search any Product..."
         placeholderTextColor="gray"
         style={styles.searchInput}
       />
 
-      {/* Microphone Icon */}
+     
       <Ionicons name="mic-outline" size={22} color="gray" style={styles.iconRight} />
     </View>
       </View>
 
 
-      {/* Scrollable Content */}
+    
       <ScrollView contentContainerStyle={{ paddingTop: 110 }}>
-        {/* Search Bar */}
         
-
-        {/* Featured Section */}
         <View style={styles.featuredContainer}>
           <Text style={styles.sectionTitle}>All Featured</Text>
 
@@ -85,7 +82,7 @@ const HomeScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Categories */}
+     
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -102,10 +99,9 @@ const HomeScreen: React.FC = () => {
           ))}
         </ScrollView>
 
-        <Banner /> {/* Top Banner */}
-        <Producthome /> {/* Product Dashboard */}
-
-        {/* Deal of the Day */}
+        <Banner /> 
+        <Producthome /> 
+        
         <View style={styles.dealContainer}>
           <Text style={styles.dealTitle}>Deal of the Day</Text>
           <View style={styles.timerRow}>
@@ -119,7 +115,6 @@ const HomeScreen: React.FC = () => {
 
         <ProductListScreen />
 
-        {/* Special Offers */}
         <View style={styles.specialOfferContainer}>
           <Image
             source={require("../../assets/images/offers.png")}
@@ -128,8 +123,51 @@ const HomeScreen: React.FC = () => {
           <View>
             <Text style={styles.specialOfferTitle}>Special Offers 🎉</Text>
             <Text style={styles.specialOfferText}>
-              We make sure you get the offer you need at best prices
+              We make sure you get the offer you need at best prices.
             </Text>
+          </View>
+        </View>
+        <View style={{ padding: 10 }}>
+          {/* Top Card */}
+          <View style={{ backgroundColor: 'white', borderRadius: 10, padding: 5, elevation: 3, flexDirection: 'row', alignItems: 'center', overflow: 'hidden' }}>
+            {/* Image Container */}
+            <View style={{ position: 'relative', width: 120, height: 100 }}>
+              {/* Background Dots */}
+              <Image 
+                source={require("../../assets/images/dots.png")} 
+                style={{ position: 'absolute', width: 100, height: 100, resizeMode: 'contain', left: -30}} 
+              />
+              {/* Shoe Image */}
+              <Image 
+                source={require("../../assets/images/hill.png")} 
+                style={{ width: 120, height: 100, resizeMode: 'contain', position: 'absolute', left: 0}} 
+              />
+              <Image 
+                source={require("../../assets/images/pipe.png")} 
+                style={{ width: 100, height: 120, resizeMode: 'contain',  left: -51.25, alignItems: "center"}} 
+              />
+            </View>
+
+            {/* Text Content */}
+            <View style={{ flex: 1, marginLeft: 10 }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#333', marginLeft:25}}>Flat and Heels</Text>
+              <Text style={{ fontSize: 12, color: '#777' }}>Stand a chance to get rewarded</Text>
+              <TouchableOpacity style={{ backgroundColor: '#FF4D6D', borderRadius: 5, paddingVertical: 8, paddingHorizontal: 15, marginTop: 10, flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', marginLeft:70 }}>
+                <Text style={{ color: 'white', fontSize: 14, fontWeight: 'bold'  }}>Visit now</Text>
+                <Text style={{ color: 'white', marginLeft: 5 }}>→</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          {/* Bottom Card */}
+          <View style={{ backgroundColor: '#FF4D6D', borderRadius: 10, padding: 15, marginTop: 10, flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ flex: 1 }}>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Trending Products</Text>
+              <Text style={{ fontSize: 12, color: 'white', opacity: 0.8 }}>📅 Last Date 29/02/22</Text>
+            </View>
+            <TouchableOpacity style={{ backgroundColor: 'white', borderRadius: 5, paddingVertical: 8, paddingHorizontal: 15 }}>
+              <Text style={{ color: '#FF4D6D', fontSize: 14, fontWeight: 'bold' }}>View all →</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -190,8 +228,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
-    width: "95%", // Adjust width as needed
-    alignSelf: "center", // Center in the parent
+    width: "95%", 
+    alignSelf: "center", 
   },
   searchBar: {
     flexDirection: "row",
@@ -294,14 +332,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 10,
-    padding: 15,
-    marginTop: 15,
+    borderRadius: 12,
+    padding: 12,
+    marginTop: 12,
     elevation: 5,
+    marginHorizontal: 10,
     shadowColor: "#000",
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 2 },
-    width: "100%", 
+     
   },
   specialOfferImage: { width: 50, height: 50, marginRight: 10 },
   specialOfferTextContainer: {

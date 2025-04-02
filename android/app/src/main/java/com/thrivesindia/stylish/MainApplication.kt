@@ -1,4 +1,4 @@
-package com.satishjnvr1.timerApp
+package com.thrivesindia.stylish
 
 import android.app.Application
 import android.content.res.Configuration

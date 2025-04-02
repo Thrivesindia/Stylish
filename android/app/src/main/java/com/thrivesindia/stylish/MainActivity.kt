@@ -1,4 +1,4 @@
-package com.satishjnvr1.timerApp
+package com.thrivesindia.stylish
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

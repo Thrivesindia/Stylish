@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.satishjnvr1.timerApp'
+    namespace 'com.thrivesindia.stylish'
     defaultConfig {
-        applicationId 'com.satishjnvr1.timerApp'
+        applicationId 'com.thrivesindia.stylish'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
