@@ -52,7 +52,7 @@ const products: Product[] = [
 
 ];
 
-const ProductListScreen: React.FC = () => {
+const ProductListSection: React.FC = () => {
   return (
     <FlatList
       data={products}
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductListScreen;
+export default ProductListSection;

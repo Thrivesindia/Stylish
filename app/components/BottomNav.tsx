@@ -7,6 +7,7 @@ import HomeScreen from "../screens/Home";
 import WishlistScreen from "../screens/Wishlist";
 import SearchScreen from "../screens/Search";
 import SettingsScreen from "../screens/Settings";
+import DashboardStack from "../components/DashboardStack";
 
 
 const Tab = createBottomTabNavigator();
@@ -31,7 +32,7 @@ const BottomNav = () => {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Dashboard" component={HomeScreen} />
+      <Tab.Screen name="Dashboard" component={DashboardStack} />
       <Tab.Screen name="Wishlist" component={WishlistScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />

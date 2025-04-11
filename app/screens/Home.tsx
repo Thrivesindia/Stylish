@@ -12,8 +12,11 @@ import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import ProductListScreen from "../components/productlist";
 import Banner from "../components/banner";
 import Producthome from "../components/product_home";
+import HotSummerSaleBanner from '../components/HotSummerSale';
+import SponsoredCard from "../components/Sponsered";
+import { useNavigation } from "@react-navigation/native";
+import type { StackNavigationProp } from '@react-navigation/stack';
 
-// Import images
 import beauty from "../../assets/images/beauty.png";
 import fashion from "../../assets/images/fashion.png";
 import kids from "../../assets/images/kids.png";
@@ -21,7 +24,13 @@ import mens from "../../assets/images/mens.png";
 import womens from "../../assets/images/womens.png";
 import stylishlogo from "../../assets/images/stylishlogo.png";
 
-const categoryImages = {
+type RootStackParamList = {
+  ProductList: { category: string };
+};
+
+type CategoryName = 'Beauty' | 'Fashion' | 'Kids' | 'Mens' | 'Womens';
+
+const categoryImages: Record<CategoryName, any> = {
   Beauty: beauty,
   Fashion: fashion,
   Kids: kids,
@@ -29,10 +38,16 @@ const categoryImages = {
   Womens: womens,
 };
 
+
 const HomeScreen: React.FC = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  const handleCategoryPress = (category: string) => {
+    navigation.navigate("ProductList", { category });
+  };
+
   return (
     <View style={styles.container}>
-  
       <View style={styles.header}>
         <View style={styles.headerTopRow}>
           <TouchableOpacity>
@@ -47,34 +62,24 @@ const HomeScreen: React.FC = () => {
         </View>
 
         <View style={styles.searchContainer}>
-      
-      <Ionicons name="search" size={20} color="gray" style={styles.iconLeft} />
-
-  
-      <TextInput
-        placeholder="Search any Product..."
-        placeholderTextColor="gray"
-        style={styles.searchInput}
-      />
-
-     
-      <Ionicons name="mic-outline" size={22} color="gray" style={styles.iconRight} />
-    </View>
+          <Ionicons name="search" size={20} color="gray" style={styles.iconLeft} />
+          <TextInput
+            placeholder="Search any Product..."
+            placeholderTextColor="gray"
+            style={styles.searchInput}
+          />
+          <Ionicons name="mic-outline" size={22} color="gray" style={styles.iconRight} />
+        </View>
       </View>
 
-
-    
       <ScrollView contentContainerStyle={{ paddingTop: 110 }}>
-        
         <View style={styles.featuredContainer}>
           <Text style={styles.sectionTitle}>All Featured</Text>
-
           <View style={styles.sortFilterContainer}>
             <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>Sort</Text>
               <FontAwesome name="sort" size={14} color="black" />
             </TouchableOpacity>
-
             <TouchableOpacity style={styles.button}>
               <Text style={styles.buttonText}>Filter</Text>
               <MaterialIcons name="filter-list" size={16} color="black" />
@@ -82,14 +87,18 @@ const HomeScreen: React.FC = () => {
           </View>
         </View>
 
-     
+        {/* 🔥 Modified category list with navigation */}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.categoryContainer}
         >
-          {Object.keys(categoryImages).map((category, index) => (
-            <TouchableOpacity key={index} style={styles.categoryItem}>
+          {(Object.keys(categoryImages) as CategoryName[]).map((category) => (
+            <TouchableOpacity
+              key={category}
+              style={styles.categoryItem}
+              onPress={() => handleCategoryPress(category)}
+            >
               <Image
                 source={categoryImages[category]}
                 style={styles.categoryImage}
@@ -99,9 +108,9 @@ const HomeScreen: React.FC = () => {
           ))}
         </ScrollView>
 
-        <Banner /> 
-        <Producthome /> 
-        
+        <Banner />
+        <Producthome />
+
         <View style={styles.dealContainer}>
           <Text style={styles.dealTitle}>Deal of the Day</Text>
           <View style={styles.timerRow}>
@@ -127,33 +136,30 @@ const HomeScreen: React.FC = () => {
             </Text>
           </View>
         </View>
+
+        {/* Flat & Heels Card */}
         <View style={{ padding: 10 }}>
-          {/* Top Card */}
           <View style={{ backgroundColor: 'white', borderRadius: 10, padding: 5, elevation: 3, flexDirection: 'row', alignItems: 'center', overflow: 'hidden' }}>
-            {/* Image Container */}
             <View style={{ position: 'relative', width: 120, height: 100 }}>
-              {/* Background Dots */}
               <Image 
                 source={require("../../assets/images/dots.png")} 
                 style={{ position: 'absolute', width: 100, height: 100, resizeMode: 'contain', left: -30}} 
               />
-              {/* Shoe Image */}
               <Image 
                 source={require("../../assets/images/hill.png")} 
                 style={{ width: 120, height: 100, resizeMode: 'contain', position: 'absolute', left: 0}} 
               />
               <Image 
                 source={require("../../assets/images/pipe.png")} 
-                style={{ width: 100, height: 120, resizeMode: 'contain',  left: -51.25, alignItems: "center"}} 
+                style={{ width: 100, height: 120, resizeMode: 'contain', left: -51.25 }} 
               />
             </View>
 
-            {/* Text Content */}
             <View style={{ flex: 1, marginLeft: 10 }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#333', marginLeft:25}}>Flat and Heels</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#333', marginLeft:25 }}>Flat and Heels</Text>
               <Text style={{ fontSize: 12, color: '#777' }}>Stand a chance to get rewarded</Text>
               <TouchableOpacity style={{ backgroundColor: '#FF4D6D', borderRadius: 5, paddingVertical: 8, paddingHorizontal: 15, marginTop: 10, flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', marginLeft:70 }}>
-                <Text style={{ color: 'white', fontSize: 14, fontWeight: 'bold'  }}>Visit now</Text>
+                <Text style={{ color: 'white', fontSize: 14, fontWeight: 'bold' }}>Visit now</Text>
                 <Text style={{ color: 'white', marginLeft: 5 }}>→</Text>
               </TouchableOpacity>
             </View>
@@ -170,8 +176,12 @@ const HomeScreen: React.FC = () => {
             </TouchableOpacity>
           </View>
         </View>
+
+        <ProductListScreen />
+        
+        <HotSummerSaleBanner />
+        <SponsoredCard />
       </ScrollView>
-      
     </View>
   );
 };

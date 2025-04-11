@@ -5,7 +5,10 @@ import { ThemeProvider, useTheme } from "./app/utils/ThemeProvider";
 import Signup from "./app/screens/signup/signup";
 import Signin from "./app/screens/login/login";
 import ForgotPasswordScreen from "./app/screens/forgetPassword/forgotpass";
-import BottomNav from "./app/components/BottomNav"; // BottomNav Import
+import BottomNav from "./app/components/BottomNav"; 
+import DashboardStack from "./app/components/DashboardStack";
+import HomeScreen from "./app/screens/Home";
+
 
 const Stack = createStackNavigator();
 
@@ -31,7 +34,7 @@ function AuthNavigator() {
       />
       <Stack.Screen
         name="Home"
-        component={BottomNav} 
+        component={BottomNav}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
