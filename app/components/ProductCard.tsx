@@ -1,8 +1,14 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types'; 
 
-type Props = {
+
+
+export type ProductCardProps = {
+  id: string;
   title: string;
   description: string;
   price: string;
@@ -11,7 +17,10 @@ type Props = {
   image: any;
 };
 
-const ProductCard: React.FC<Props> = ({
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'ProductDetail'>;
+
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
   title,
   description,
   price,
@@ -19,7 +28,22 @@ const ProductCard: React.FC<Props> = ({
   reviews,
   image,
 }) => {
-  // Round off to nearest half-star logic
+  const navigation = useNavigation<NavigationProp>();
+
+  const handlePress = () => {
+    navigation.navigate('ProductDetail', {
+      product: {
+        id,
+        title,
+        description,
+        price,
+        rating,
+        ratingCount: reviews.toString(), // match your Product type
+        image: typeof image === 'number' ? Image.resolveAssetSource(image).uri : image,
+      },
+    });
+  };
+
   const renderStars = () => {
     const fullStars = Math.floor(rating);
     const halfStar = rating - fullStars >= 0.5;
@@ -38,35 +62,28 @@ const ProductCard: React.FC<Props> = ({
   };
 
   return (
-    <View style={styles.card}>
-      <Image source={image} style={styles.image} />
-
-      <Text style={styles.title} numberOfLines={1}>
-        {title}
-      </Text>
-
-      <Text style={styles.description} numberOfLines={2}>
-        {description}
-      </Text>
-
+    <TouchableOpacity style={styles.card} onPress={handlePress}>
+      <Image source={typeof image === 'number' ? image : { uri: image }} style={styles.image} />
+      <Text style={styles.title} numberOfLines={1}>{title}</Text>
+      <Text style={styles.description} numberOfLines={2}>{description}</Text>
       <Text style={styles.price}>{price}</Text>
-
       <View style={styles.ratingRow}>
         {renderStars()}
         <Text style={styles.reviewsText}>{reviews.toLocaleString()}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 export default ProductCard;
+
 
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 12,
     padding: 10,
-    margin:3,
+    margin: 8,
     elevation: 3,
     shadowColor: '#000',
     shadowOpacity: 0.1,

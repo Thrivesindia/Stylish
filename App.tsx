@@ -8,6 +8,7 @@ import ForgotPasswordScreen from "./app/screens/forgetPassword/forgotpass";
 import BottomNav from "./app/components/BottomNav"; 
 import DashboardStack from "./app/components/DashboardStack";
 import HomeScreen from "./app/screens/Home";
+import ProductDetailScreen from "./app/components/ProductDetailScreen";
 
 
 const Stack = createStackNavigator();
@@ -37,6 +38,8 @@ function AuthNavigator() {
         component={BottomNav}
         options={{ headerShown: false }}
       />
+    
+
     </Stack.Navigator>
   );
 }

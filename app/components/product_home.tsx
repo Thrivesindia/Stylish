@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     margin: 3,
-    width: "49%", // ✅ Makes sure 2 products fit per row
+    width: "49%", 
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
