@@ -23,6 +23,8 @@ import kids from "../../assets/images/kids.png";
 import mens from "../../assets/images/mens.png";
 import womens from "../../assets/images/womens.png";
 import stylishlogo from "../../assets/images/stylishlogo.png";
+import { Product, RootStackParamList } from "../types"; // Import types
+
 
 type RootStackParamList = {
   ProductList: { category: string };

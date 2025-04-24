@@ -24,7 +24,6 @@ const HotSummerSaleBanner = () => {
 
 export default HotSummerSaleBanner;
 
-// ✅ Style object (no StyleSheet.create)
 const styles = {
   hotSaleContainer: {
     backgroundColor: '#fff',
