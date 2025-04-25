@@ -9,10 +9,20 @@ export interface Product {
   ratingCount: string;
   description: string;
 }
+export interface CartItem {
+  id: string;
+  name: string;
+  variant: string;
+  rating: number;
+  price: number;
+  originalPrice: number;
+  image: string;
+}
   
   export type RootStackParamList = {
     HomeScreen: undefined;
     ProductList: { category: string };
     ProductDetail: { product: Product };
+    CartScreen: { cartItems: CartItem[] };
   };
   

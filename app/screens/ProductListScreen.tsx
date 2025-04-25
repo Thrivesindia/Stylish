@@ -27,7 +27,6 @@ import stylishlogo from '../../assets/images/stylishlogo.png';
 
 type ProductListRouteProp = RouteProp<RootStackParamList, 'ProductList'>;
 type NavigationProp = StackNavigationProp<RootStackParamList, 'ProductList'>;
-
 const HEADER_HEIGHT = 58;
 
 const ProductListScreen = () => {
@@ -76,7 +75,7 @@ const ProductListScreen = () => {
       id: '3',
       title: 'Black Dress',
       description: 'Solid Black Dress for Women, Sexy Chain Shorts Ladi...',
-      price: '₹2,000',
+      price: '₹2000',
       rating: 4.8,
       reviews: 523456,
       image: pinkdress,
@@ -85,7 +84,7 @@ const ProductListScreen = () => {
       id: '4',
       title: 'Pink Embroide...',
       description: 'EARTHEN Rose Pink Embroidered Tiered Maxi...',
-      price: '₹1,900',
+      price: '₹1900',
       rating: 4.6,
       reviews: 45678,
       image: starryshirt,
@@ -121,7 +120,7 @@ const ProductListScreen = () => {
     id: '8',
     title: 'Black Dress',
     description: 'Solid Black Dress for Women, Sexy Chain Shorts Ladi...',
-    price: '₹2,000',
+    price: '₹2000',
     rating: 4.8,
     reviews: 523456,
     image: pinkdress,
@@ -130,7 +129,7 @@ const ProductListScreen = () => {
     id: '9',
     title: 'Pink Embroide...',
     description: 'EARTHEN Rose Pink Embroidered Tiered Maxi...',
-    price: '₹1,900',
+    price: '₹1900',
     rating: 4.6,
     reviews: 45678,
     image: starryshirt,
@@ -169,8 +168,7 @@ const ProductListScreen = () => {
     <SafeAreaView style={styles.container}>
       <Animated.View style={[styles.header, { transform: [{ translateY: translateHeader }] }]}>
         <View style={styles.headerTopRow}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            
+          <TouchableOpacity onPress={() => navigation.goBack()}>  
             <Ionicons name="arrow-back" size={26} color="black" />
           </TouchableOpacity>
 
@@ -195,7 +193,6 @@ const ProductListScreen = () => {
           />
           <Ionicons name="mic-outline" size={22} color="gray" style={styles.iconRight} />
         </View>
-
         <View style={styles.featuredContainer}>
           <Text style={styles.sectionTitle}>{category} - 52,082+ Items</Text>
           <View style={styles.sortFilterContainer}>
@@ -210,7 +207,6 @@ const ProductListScreen = () => {
           </View>
         </View>
       </Animated.View>
-
       <MasonryList<ProductCardProps>
           data={productData}
           keyExtractor={(item) => item.id}
@@ -224,9 +220,7 @@ const ProductListScreen = () => {
     </SafeAreaView>
   );
 };
-
 export default ProductListScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
