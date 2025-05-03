@@ -38,8 +38,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         description,
         price,
         rating,
-        ratingCount: reviews.toString(), // match your Product type
+        ratingCount: reviews.toString(), 
         image: typeof image === 'number' ? Image.resolveAssetSource(image).uri : image,
+        
       },
     });
   };

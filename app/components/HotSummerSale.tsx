@@ -1,7 +1,19 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
+import type { StackNavigationProp } from '@react-navigation/stack';
+import { Product, RootStackParamList } from "../types"; 
 
-const HotSummerSaleBanner = () => {
+
+type RootStackParamList = {
+  ProductList: { category: string };
+};
+const HotSummerSaleBanner = () => { 
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+  const handleCategoryPress = (category: string) => {
+    navigation.navigate("ProductList", { category });
+  };
   return (
     <View style={styles.hotSaleContainer}>
       <Image
@@ -14,7 +26,7 @@ const HotSummerSaleBanner = () => {
           <Text style={styles.newArrivalsTitle}>New Arrivals</Text>
           <Text style={styles.newArrivalsSubtitle}>Summer’ 25 Collections</Text>
         </View>
-        <TouchableOpacity style={styles.viewAllButton}>
+        <TouchableOpacity style={styles.viewAllButton}onPress={() => navigation.navigate("ProductList", { category: "Tranding" })}>
           <Text style={styles.viewAllText}>View all →</Text>
         </TouchableOpacity>
       </View>

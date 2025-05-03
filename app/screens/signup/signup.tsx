@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import { FontAwesome, Entypo, AntDesign } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
+import LoginScreen from '../login/login';
 
 type SignupScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Signup'>;
@@ -39,7 +40,7 @@ const SignupScreen: React.FC<SignupScreenProps> = ({ navigation }) => {
       </Text>
 
       {/* Sign Up Button */}
-      <TouchableOpacity style={styles.signupButton}>
+      <TouchableOpacity style={styles.signupButton}onPress={() => navigation.navigate('Signin')}>
         <Text style={styles.signupText}>Create Account</Text>
       </TouchableOpacity>
 

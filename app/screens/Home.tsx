@@ -17,13 +17,14 @@ import SponsoredCard from "../components/Sponsered";
 import { useNavigation } from "@react-navigation/native";
 import type { StackNavigationProp } from '@react-navigation/stack';
 
+
 import beauty from "../../assets/images/beauty.png";
 import fashion from "../../assets/images/fashion.png";
 import kids from "../../assets/images/kids.png";
 import mens from "../../assets/images/mens.png";
 import womens from "../../assets/images/womens.png";
 import stylishlogo from "../../assets/images/stylishlogo.png";
-import { Product, RootStackParamList } from "../types"; // Import types
+import { Product, RootStackParamList } from "../types"; 
 
 
 type RootStackParamList = {
@@ -89,7 +90,6 @@ const HomeScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* 🔥 Modified category list with navigation */}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -119,7 +119,7 @@ const HomeScreen: React.FC = () => {
             <FontAwesome name="clock-o" size={14} color="white" />
             <Text style={styles.dealTimer}> 22h 55m 20s remaining</Text>
           </View>
-          <TouchableOpacity style={styles.dealButton}>
+          <TouchableOpacity style={styles.dealButton} onPress={() => navigation.navigate("ProductList", { category: "Deals" })}>
             <Text style={styles.dealButtonText}>View all →</Text>
           </TouchableOpacity>
         </View>
@@ -160,7 +160,7 @@ const HomeScreen: React.FC = () => {
             <View style={{ flex: 1, marginLeft: 10 }}>
               <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#333', marginLeft:25 }}>Flat and Heels</Text>
               <Text style={{ fontSize: 12, color: '#777' }}>Stand a chance to get rewarded</Text>
-              <TouchableOpacity style={{ backgroundColor: '#FF4D6D', borderRadius: 5, paddingVertical: 8, paddingHorizontal: 15, marginTop: 10, flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', marginLeft:70 }}>
+              <TouchableOpacity style={{ backgroundColor: '#FF4D6D', borderRadius: 5, paddingVertical: 8, paddingHorizontal: 15, marginTop: 10, flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', marginLeft:70 }}onPress={() => navigation.navigate("ProductList", { category: "Specialoffer" })}>
                 <Text style={{ color: 'white', fontSize: 14, fontWeight: 'bold' }}>Visit now</Text>
                 <Text style={{ color: 'white', marginLeft: 5 }}>→</Text>
               </TouchableOpacity>
@@ -173,7 +173,7 @@ const HomeScreen: React.FC = () => {
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Trending Products</Text>
               <Text style={{ fontSize: 12, color: 'white', opacity: 0.8 }}>📅 Last Date 29/02/22</Text>
             </View>
-            <TouchableOpacity style={{ backgroundColor: 'white', borderRadius: 5, paddingVertical: 8, paddingHorizontal: 15 }}>
+            <TouchableOpacity style={{ backgroundColor: 'white', borderRadius: 5, paddingVertical: 8, paddingHorizontal: 15 }}onPress={() => navigation.navigate("ProductList", { category: "Tranding" })}onPress={() => navigation.navigate("ProductList", { category: "NewArrivals" })}>
               <Text style={{ color: '#FF4D6D', fontSize: 14, fontWeight: 'bold' }}>View all →</Text>
             </TouchableOpacity>
           </View>

@@ -5,11 +5,8 @@ import { ThemeProvider, useTheme } from "./app/utils/ThemeProvider";
 import Signup from "./app/screens/signup/signup";
 import Signin from "./app/screens/login/login";
 import ForgotPasswordScreen from "./app/screens/forgetPassword/forgotpass";
-import BottomNav from "./app/components/BottomNav"; 
-import DashboardStack from "./app/components/DashboardStack";
-import HomeScreen from "./app/screens/Home";
-import ProductDetailScreen from "./app/components/ProductDetailScreen";
-
+import BottomNav from "./app/components/BottomNav";
+import { CartProvider } from "./app/cart/CartContext";
 
 const Stack = createStackNavigator();
 
@@ -38,8 +35,6 @@ function AuthNavigator() {
         component={BottomNav}
         options={{ headerShown: false }}
       />
-    
-
     </Stack.Navigator>
   );
 }
@@ -47,9 +42,11 @@ function AuthNavigator() {
 export default function App() {
   return (
     <ThemeProvider>
-      <NavigationContainer>
-        <AuthNavigator />
-      </NavigationContainer>
+      <CartProvider>
+        <NavigationContainer>
+          <AuthNavigator />
+        </NavigationContainer>
+      </CartProvider>
     </ThemeProvider>
   );
 }
